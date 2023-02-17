@@ -287,25 +287,25 @@ function filterData() {
 	filter.forEach( f => {
 		let info = f.split(",");
 		if (!usedForFilter.includes("sy_snum")){
-			sysStar.data = sysStar.data.filter(d => d[info[0]] != info[1]);
+			sysStar.data = sysStar.data.filter(d => d[info[0]] == info[1]);
 		}
 		if (!usedForFilter.includes("sy_pnum")){
-			sysPlan.data = sysPlan.data.filter(d => d[info[0]] != info[1]);
+			sysPlan.data = sysPlan.data.filter(d => d[info[0]] == info[1]);
 		}
 		if (!usedForFilter.includes("type")){
-			starType.data = starType.data.filter(d => d[info[0]] != info[1]);
+			starType.data = starType.data.filter(d => d[info[0]] == info[1]);
 		}
 		if (!usedForFilter.includes("habit")){
-			habitability.data = habitability.data.filter(d => d[info[0]] != info[1]);
+			habitability.data = habitability.data.filter(d => d[info[0]] == info[1]);
 		}
 		if (!usedForFilter.includes("bin")){
-			distance.data =distance.data.filter(d => d[info[0]] != info[1]);
+			distance.data =distance.data.filter(d => d[info[0]] == info[1]);
 		}
 		if (!usedForFilter.includes("discoverymethod")){
 			//TODO: Fix this
-			discoveryType.data = discoveryType.data.filter(d => d[info[0]] != info[1]);
+			discoveryType.data = discoveryType.data.filter(d => d[info[0]] == info[1]);
 		}
-		scatterplot.data = scatterplot.data.filter(d => d[info[0]] != info[1]);
+		scatterplot.data = scatterplot.data.filter(d => d[info[0]] == info[1]);
 
 		let minYear = d3.min( data, d => d.disc_year);
 		let maxYear = d3.max( data, d=> d.disc_year );

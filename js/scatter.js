@@ -1,3 +1,5 @@
+//started code taken from
+//https://codesandbox.io/s/github/UBC-InfoVis/2021-436V-examples/tree/master/d3-linked-charts-basic?file=%2Fjs%2Fscatterplot.js
 class Scatterplot {
 
     constructor(_config, _data) {
@@ -105,15 +107,12 @@ class Scatterplot {
       vis.renderVis();
     }
   
-    /**
-     * Bind data to visual elements.
-     */
     renderVis() {
       let vis = this;
   
       // Add circles
       const circles = vis.chart.selectAll('.point')
-          .data(vis.data, d => d.trail)
+          .data(vis.data)
         .join('circle')
           .attr('class', 'point')
           .attr('r', 4)

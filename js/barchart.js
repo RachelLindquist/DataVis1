@@ -1,3 +1,5 @@
+//Starter code taken from
+//https://codesandbox.io/s/github/UBC-InfoVis/2021-436V-examples/tree/master/d3-linked-charts-basic?file=%2Fjs%2Fbarchart.js
 class BarChart{
     constructor(_config, _data, _name, _item, _classification) {
         // Configuration object with defaults
@@ -10,7 +12,7 @@ class BarChart{
         }
         this.data = _data;
         this.na = _name;
-        this.item = _item;
+        this.item = _item; // = "sy_snum"
         this.classification = _classification;
         this.initVis();
     
@@ -23,15 +25,11 @@ class BarChart{
         vis.width = vis.config.containerWidth - vis.config.margin.left - vis.config.margin.right;
         vis.height = vis.config.containerHeight - vis.config.margin.top - vis.config.margin.bottom;
     
-        // Initialize scales and axes
-        
-        // Initialize scales
         vis.colorScale = d3.scaleOrdinal()
         .range (this.config.colorScale.range())
         .domain(this.config.colorScale.domain())
 
-        
-        // Important: we flip array elements in the y output range to position the rectangles correctly
+  
         vis.yScale = d3.scaleLinear()
             .range([vis.height, 0]) 
     
@@ -80,7 +78,7 @@ class BarChart{
     updateVis() {
       let vis = this;
   
-      const aggregatedDataMap = d3.rollups(vis.data, v => v.length, d => d[this.item]);
+      const aggregatedDataMap = d3.rollups(vis.data, v => v.length, d => d[this.item]); //this.item = "sy_snum"
       vis.aggregatedData = Array.from(aggregatedDataMap, ([key, count]) => ({ key, count }));
 
       //add extra info for filtering
@@ -134,7 +132,6 @@ class BarChart{
             d3.select('#tooltip').style('display', 'none');
           });
 
-        //TODO: Fix this filtering + filtering function
         bars.on('click', function(event, d) {
           let fil = d.title + "," + d.key;
           const isActive = filter.includes(fil);

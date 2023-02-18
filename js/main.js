@@ -1,5 +1,4 @@
 let filter = [];
-//let usedForFilter = [];
 let data, disc, sysStar, sysPlan, starType, habitability, scatterplot, distance, discTime, discoveryType;
 
 
@@ -7,8 +6,6 @@ let data, disc, sysStar, sysPlan, starType, habitability, scatterplot, distance,
 d3.csv('data/exoplanets-1.csv')
   .then(_data => {
 	data = _data;
-	console.log('Data loading complete. Work with dataset.');
-    console.log(data);
 	//calculations to fix stars
 	data.forEach( d => {
 		let starType = d.st_spectype;
@@ -251,12 +248,13 @@ d3.csv('data/exoplanets-1.csv')
 
 
 	//Tables TODO
-	columns = [];
 	let table = new Table({
 		'parentElement': '#dataTable',
 		'containerHeight': 200,
 		'containerWidth': 1420,
-	}, data, 'Planet Data Table', columns);
+	}, data, 'Planet Data Table');
+	table.initVis();
+
 
 });
 

@@ -1,3 +1,5 @@
+//starter code taken from
+//https://codesandbox.io/s/github/UBC-InfoVis/2021-436V-examples/tree/master/d3-interactive-line-chart
 class Line {
 
   constructor(_config, _data, _name) {

@@ -115,18 +115,48 @@ class Scatterplot {
           .data(vis.data)
         .join('circle')
           .attr('class', 'point')
-          .attr('r', 4)
+          .attr('r', 3)
           .attr('cy', d => vis.yScale(vis.yValue(d)))
           .attr('cx', d => vis.xScale(vis.xValue(d)))
-          .attr('fill', d => { // fix this to match something else, maybe
-            if(d.habit == 'Unknown')
-              return '#444444';
-            else if (d.habit == "habitable")
-              return '#009085';
-            else 
-              return '#ff0a92';
+          // https://www.color-hex.com/color-palette/1022562
+          // https://www.color-hex.com/color-palette/1022560
+          .attr('fill', d => {
+            if(d.st_mass < 0.00001)
+              return '#c435ff'; //asterodian
+            else if (d.st_mass < 0.1)
+              return '#158844'; //mercurian
+            else if (d.st_mass < 0.5)
+              return '#1d939b'; //subterran
+            else if (d.st_mass < 2)
+              return "#c4ffd9"; //terran
+            else if (d.st_mass < 10)
+              return "#2fdbd1"; //superterran
+            else if (d.st_mass < 50)
+              return "#eed0ff"; // Neptunian
+            else if (d.st_mass < 5000)
+              return "#00efff"; //Jovian
+            else
+              return '#888888'; //Missing/Other
           });
-  
+
+          //Legend
+          vis.chart.append("circle").attr("cx",12).attr("cy",195).attr("r", 5).style("fill", '#c435ff');
+          vis.chart.append("circle").attr("cx",102).attr("cy",195).attr("r", 5).style("fill", '#158844');
+          vis.chart.append("circle").attr("cx",182).attr("cy",195).attr("r", 5).style("fill", '#1d939b');
+          vis.chart.append("circle").attr("cx",262).attr("cy",195).attr("r", 5).style("fill", "#c4ffd9");
+          vis.chart.append("circle").attr("cx",12).attr("cy",235).attr("r", 5).style("fill", "#2fdbd1");
+          vis.chart.append("circle").attr("cx",102).attr("cy",235).attr("r", 5).style("fill", "#eed0ff");
+          vis.chart.append("circle").attr("cx",182).attr("cy",235).attr("r", 5).style("fill", "#00efff");
+          vis.chart.append("circle").attr("cx",262).attr("cy",235).attr("r", 5).style("fill", '#888888');
+          vis.chart.append("text").attr("x", 20).attr("y", 200).text("Asterodian").style("font-size", "15px").attr("alignment-baseline","middle").attr("fill", "white");
+          vis.chart.append("text").attr("x", 110).attr("y", 200).text("Mercurian").style("font-size", "15px").attr("alignment-baseline","middle"). attr ("fill", "white");
+          vis.chart.append("text").attr("x", 190).attr("y", 200).text("Subterran").style("font-size", "15px").attr("alignment-baseline","middle"). attr ("fill", "white");
+          vis.chart.append("text").attr("x", 270).attr("y", 200).text("Terran").style("font-size", "15px").attr("alignment-baseline","middle"). attr ("fill", "white");
+          vis.chart.append("text").attr("x", 20).attr("y", 240).text("Superterran").style("font-size", "15px").attr("alignment-baseline","middle"). attr ("fill", "white");
+          vis.chart.append("text").attr("x", 110).attr("y", 240).text("Neptunian").style("font-size", "15px").attr("alignment-baseline","middle"). attr ("fill", "white");
+          vis.chart.append("text").attr("x", 190).attr("y", 240).text("Jovian").style("font-size", "15px").attr("alignment-baseline","middle"). attr ("fill", "white");
+          vis.chart.append("text").attr("x", 270).attr("y", 240).text("Missing/Other").style("font-size", "15px").attr("alignment-baseline","middle"). attr ("fill", "white");
+
       // Tooltip event listeners
       circles
           .on('mouseover', (event,d) => {
@@ -142,7 +172,7 @@ class Scatterplot {
                   <li>Radius: ${d.st_rad}</li>
                 </ul>
               `)
-              d3.select(event.currentTarget).style("fill", "#2e8bc0");
+              d3.select(event.currentTarget).style("fill", "red");
           })
           .on('mouseleave', () => {
             d3.select('#tooltip').style('display', 'none');
@@ -151,13 +181,23 @@ class Scatterplot {
 
           .on("mouseout", function(d){
             d3.select(event.currentTarget)
-            .style("fill", d => { 
-              if(d.habit == 'Unknown')
+            .style('fill', d => {
+              if(d.st_mass < 0.00001)
+                return '#c435ff';
+              else if (d.st_mass < 0.1)
+                return '#158844';
+              else if (d.st_mass < 0.5)
+                return '#1d939b';
+              else if (d.st_mass < 2)
+                return "#c4ffd9";
+              else if (d.st_mass < 10)
+                return "#2fdbd1";
+              else if (d.st_mass < 50)
+                return "#eed0ff";
+              else if (d.st_mass < 5000)
+                return "#00efff";
+              else
                 return '#444444';
-              else if (d.habit == "habitable")
-                return '#009085';
-              else 
-                return '#ff0a92';
             });
            });
       

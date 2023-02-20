@@ -85,6 +85,25 @@ class Scatterplot {
             .attr('dy', '.71em')
             .style('fill', 'white')
             .text("Mass vs Radius");
+
+        
+          //Legend
+          vis.chart.append("circle").attr("cx",12).attr("cy",195).attr("r", 5).style("fill", '#c435ff');
+          vis.chart.append("circle").attr("cx",102).attr("cy",195).attr("r", 5).style("fill", '#158844');
+          vis.chart.append("circle").attr("cx",182).attr("cy",195).attr("r", 5).style("fill", '#1d939b');
+          vis.chart.append("circle").attr("cx",262).attr("cy",195).attr("r", 5).style("fill", "#c4ffd9");
+          vis.chart.append("circle").attr("cx",12).attr("cy",235).attr("r", 5).style("fill", "#2fdbd1");
+          vis.chart.append("circle").attr("cx",102).attr("cy",235).attr("r", 5).style("fill", "#eed0ff");
+          vis.chart.append("circle").attr("cx",182).attr("cy",235).attr("r", 5).style("fill", "#00efff");
+          vis.chart.append("circle").attr("cx",262).attr("cy",235).attr("r", 5).style("fill", '#888888');
+          vis.chart.append("text").attr("x", 20).attr("y", 200).text("Asterodian").style("font-size", "15px").attr("alignment-baseline","middle").attr("fill", "white");
+          vis.chart.append("text").attr("x", 110).attr("y", 200).text("Mercurian").style("font-size", "15px").attr("alignment-baseline","middle"). attr ("fill", "white");
+          vis.chart.append("text").attr("x", 190).attr("y", 200).text("Subterran").style("font-size", "15px").attr("alignment-baseline","middle"). attr ("fill", "white");
+          vis.chart.append("text").attr("x", 270).attr("y", 200).text("Terran").style("font-size", "15px").attr("alignment-baseline","middle"). attr ("fill", "white");
+          vis.chart.append("text").attr("x", 20).attr("y", 240).text("Superterran").style("font-size", "15px").attr("alignment-baseline","middle"). attr ("fill", "white");
+          vis.chart.append("text").attr("x", 110).attr("y", 240).text("Neptunian").style("font-size", "15px").attr("alignment-baseline","middle"). attr ("fill", "white");
+          vis.chart.append("text").attr("x", 190).attr("y", 240).text("Jovian").style("font-size", "15px").attr("alignment-baseline","middle"). attr ("fill", "white");
+          vis.chart.append("text").attr("x", 270).attr("y", 240).text("Missing/Other").style("font-size", "15px").attr("alignment-baseline","middle"). attr ("fill", "white");
     }
   
     /**
@@ -138,24 +157,6 @@ class Scatterplot {
             else
               return '#888888'; //Missing/Other
           });
-
-          //Legend
-          vis.chart.append("circle").attr("cx",12).attr("cy",195).attr("r", 5).style("fill", '#c435ff');
-          vis.chart.append("circle").attr("cx",102).attr("cy",195).attr("r", 5).style("fill", '#158844');
-          vis.chart.append("circle").attr("cx",182).attr("cy",195).attr("r", 5).style("fill", '#1d939b');
-          vis.chart.append("circle").attr("cx",262).attr("cy",195).attr("r", 5).style("fill", "#c4ffd9");
-          vis.chart.append("circle").attr("cx",12).attr("cy",235).attr("r", 5).style("fill", "#2fdbd1");
-          vis.chart.append("circle").attr("cx",102).attr("cy",235).attr("r", 5).style("fill", "#eed0ff");
-          vis.chart.append("circle").attr("cx",182).attr("cy",235).attr("r", 5).style("fill", "#00efff");
-          vis.chart.append("circle").attr("cx",262).attr("cy",235).attr("r", 5).style("fill", '#888888');
-          vis.chart.append("text").attr("x", 20).attr("y", 200).text("Asterodian").style("font-size", "15px").attr("alignment-baseline","middle").attr("fill", "white");
-          vis.chart.append("text").attr("x", 110).attr("y", 200).text("Mercurian").style("font-size", "15px").attr("alignment-baseline","middle"). attr ("fill", "white");
-          vis.chart.append("text").attr("x", 190).attr("y", 200).text("Subterran").style("font-size", "15px").attr("alignment-baseline","middle"). attr ("fill", "white");
-          vis.chart.append("text").attr("x", 270).attr("y", 200).text("Terran").style("font-size", "15px").attr("alignment-baseline","middle"). attr ("fill", "white");
-          vis.chart.append("text").attr("x", 20).attr("y", 240).text("Superterran").style("font-size", "15px").attr("alignment-baseline","middle"). attr ("fill", "white");
-          vis.chart.append("text").attr("x", 110).attr("y", 240).text("Neptunian").style("font-size", "15px").attr("alignment-baseline","middle"). attr ("fill", "white");
-          vis.chart.append("text").attr("x", 190).attr("y", 240).text("Jovian").style("font-size", "15px").attr("alignment-baseline","middle"). attr ("fill", "white");
-          vis.chart.append("text").attr("x", 270).attr("y", 240).text("Missing/Other").style("font-size", "15px").attr("alignment-baseline","middle"). attr ("fill", "white");
 
       // Tooltip event listeners
       circles

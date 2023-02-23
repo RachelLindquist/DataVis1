@@ -116,21 +116,13 @@ class BarChart{
       // Add rectangles
       const bars = vis.chart.selectAll('.bar')
           .data(vis.aggregatedData, vis.xValue)
-          .join(
-            function(enter) { //couldn't get animation to work without looking terrible
-              return enter
-                .append('rect');
-            },
-            function(update) {
-              return update;
-            },
-            function(exit) {
-              return exit
-                //.transition()
-                .remove();
-            }
-          )
-          .attr('class', 'bar')
+          .join('rect')
+          .attr('class', 'bar');
+
+      bars
+          .merge(bars) // https://stackoverflow.com/questions/40153291/d3-js-update-with-transition
+          .transition()
+          .duration(1000)
           .attr('x', d => vis.xScale(vis.xValue(d)))
           .attr('width', vis.xScale.bandwidth())
           .attr('height', d => vis.height - vis.yScale(vis.yValue(d)))

@@ -119,7 +119,7 @@ class Scatterplot {
       // Set the scale input domains
       //Using d3.max I couldn't get above 9.99 and things got cut off
       //so I've hard coded it
-      vis.yScale.domain([0, 10.94]);
+      vis.yScale.domain([0, 10.94]); //try to get this to work with d3.max so I can use filtering
       vis.xScale.domain([0, 109.46]);
 
   
@@ -132,21 +132,13 @@ class Scatterplot {
       // Add circles
       const circles = vis.chart.selectAll('.point')
           .data(vis.data)
-          .join(
-            function(enter) {
-              return enter
-                .append('circle');
-            },
-            function(update) {
-              return update;
-            },
-            function(exit) {
-              return exit
-                .transition()
-                .remove();
-            }
-          )
-          .attr('class', 'point')
+          .join('circle')
+          .attr('class', 'point');
+
+      circles          
+      .merge(circles) // https://stackoverflow.com/questions/40153291/d3-js-update-with-transition
+      .transition()
+      .duration(1000)
           .attr('r', 3)
           .attr('cy', d => vis.yScale(vis.yValue(d)))
           .attr('cx', d => vis.xScale(vis.xValue(d)))

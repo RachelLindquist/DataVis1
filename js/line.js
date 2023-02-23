@@ -111,17 +111,21 @@ class Line {
      // Add area path
      vis.chart.append('path')
      .data([vis.data])
+     .transition()
+     .duration(1000)
      .attr('class', 'chart-area')
      .attr('d', vis.area)
      .style('fill', '#d2afff')
      .style ('opacity', 0.5);
 
- // Add line path
- vis.chart.append('path')
+    // Add line path
+    vis.chart.append('path')
      .data([vis.data])
      .attr('class', 'chart-line')
      .attr('d', vis.line)
      .style ("stroke", "#ba84ff")
+     .transition()
+     .duration(6000)
      .style('fill', 'none');
 
      vis.chart.append('text')

@@ -1,7 +1,7 @@
 //Starter code taken from
 //https://codesandbox.io/s/github/UBC-InfoVis/2021-436V-examples/tree/master/d3-linked-charts-basic?file=%2Fjs%2Fbarchart.js
 class BarChart{
-    constructor(_config, _data, _name, _item, _classification) {
+    constructor(_config, _data, _name, _item, _classification, _rotate) {
         // Configuration object with defaults
         this.config = {
           parentElement: _config.parentElement,
@@ -14,6 +14,7 @@ class BarChart{
         this.na = _name;
         this.item = _item; // = "sy_snum"
         this.classification = _classification;
+        this.rotate = _rotate || false;
         this.initVis();
     
       }
@@ -46,9 +47,15 @@ class BarChart{
             .tickSizeOuter(0)
     
         // Define size of SVG drawing area
-        vis.svg = d3.select(vis.config.parentElement)
-            .attr('width', vis.config.containerWidth)
-            .attr('height', vis.config.containerHeight);
+        if (vis.rotate){ //make extra space for rotated labels
+          vis.svg = d3.select(vis.config.parentElement)
+            .attr('width', vis.config.containerWidth+30)
+            .attr('height', vis.config.containerHeight+50);
+        } else {
+          vis.svg = d3.select(vis.config.parentElement)
+          .attr('width', vis.config.containerWidth)
+          .attr('height', vis.config.containerHeight);
+        }
     
         // SVG Group containing the actual chart; D3 margin convention
         vis.chart = vis.svg.append('g')
@@ -109,7 +116,20 @@ class BarChart{
       // Add rectangles
       const bars = vis.chart.selectAll('.bar')
           .data(vis.aggregatedData, vis.xValue)
-          .join('rect')
+          .join(
+            function(enter) { //couldn't get animation to work without looking terrible
+              return enter
+                .append('rect');
+            },
+            function(update) {
+              return update;
+            },
+            function(exit) {
+              return exit
+                //.transition()
+                .remove();
+            }
+          )
           .attr('class', 'bar')
           .attr('x', d => vis.xScale(vis.xValue(d)))
           .attr('width', vis.xScale.bandwidth())
@@ -148,7 +168,17 @@ class BarChart{
         });
 
       // Update axes
-      vis.xAxisG.call(vis.xAxis);
+      if (vis.rotate){ //if rotate, rotate the labels on the x axis
+        vis.xAxisG.call(vis.xAxis)
+        .selectAll("text")
+        .style("text-anchor", "start")
+        .attr("dx", "0.75em")
+        .attr("dy", ".15em")
+        .attr("transform", "rotate(30)");
+      } else {
+        vis.xAxisG.call(vis.xAxis)
+      }
+
       vis.yAxisG.call(vis.yAxis);
     }
 }

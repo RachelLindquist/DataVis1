@@ -116,7 +116,7 @@ d3.csv('data/exoplanets-1.csv')
 		'parentElement': '#multiStar',
 		'colorScale' : starScale,
 		'containerHeight': 200,
-		'containerWidth': 600,
+		'containerWidth': 400,
 	}, data, "Stars per system", 'sy_snum', 'Number of Stars'); 
 		sysStar.updateVis();
 
@@ -130,7 +130,7 @@ d3.csv('data/exoplanets-1.csv')
 		'parentElement': '#planetSys',
 		'colorScale' : planScale,
 		'containerHeight': 200,
-		'containerWidth': 600,
+		'containerWidth': 400,
 	}, data, 'Planets per System', 'sy_pnum', 'Number of Planets'); 
 	sysPlan.updateVis();
 
@@ -144,7 +144,7 @@ d3.csv('data/exoplanets-1.csv')
 		'parentElement': '#starType',
 		'colorScale' : typeScale,
 		'containerHeight': 200,
-		'containerWidth': 600,
+		'containerWidth': 400,
 	}, data, 'Star Types', 'type', 'Star Type'); 
 	starType.updateVis();
 
@@ -161,7 +161,7 @@ d3.csv('data/exoplanets-1.csv')
 		'parentElement': '#habitability',
 		'colorScale' : habScale,
 		'containerHeight': 200,
-		'containerWidth': 600,
+		'containerWidth': 400,
 	}, data, 'Number of Habitabitable Exoplanets', 'habit', 'Habitable?'); 
 	habitability.updateVis();
 
@@ -170,8 +170,8 @@ d3.csv('data/exoplanets-1.csv')
 
 	scatterplot = new Scatterplot({ 
 		'parentElement': '#radVMass',
-		'containerHeight': 300,
-		'containerWidth': 600,
+		'containerHeight': 200,
+		'containerWidth': 400,
 	  }, data);
 	  scatterplot.updateVis();
 
@@ -211,7 +211,7 @@ d3.csv('data/exoplanets-1.csv')
 		'parentElement': '#distance',
 		'colorScale' : disScale,
 		'containerHeight': 200,
-		'containerWidth': 600,
+		'containerWidth': 400,
 	}, data, 'Distance from Earth in Parsecs', 'bin', 'Distance'); 
 	distance.updateVis();
 	
@@ -220,8 +220,8 @@ d3.csv('data/exoplanets-1.csv')
 	//linechart
 	discTime = new Line({
 		'parentElement': '#disTime',
-		'containerHeight': 300,
-		'containerWidth': 600,
+		'containerHeight': 200,
+		'containerWidth': 400,
 	}, disc, 'Discoveries each year');
 	discTime.updateVis();
 
@@ -242,8 +242,8 @@ d3.csv('data/exoplanets-1.csv')
 		'parentElement': '#discoveryType',
 		'colorScale' : discScale,
 		'containerHeight': 200,
-		'containerWidth': 1420,
-	}, data, 'Discovery Type', 'discoverymethod', 'Discovery Method'); 
+		'containerWidth': 1000,
+	}, data, 'Discovery Type', 'discoverymethod', 'Discovery Method', true); 
 	discoveryType.updateVis();
 
 

@@ -52,6 +52,7 @@ class Table{
     renderVis(){
       let vis = this;
 
-      
+      // https://forrestcoward.github.io/examples/scrollable-table/index.html
+      // tried using thsi ^ couldnt get it to work
     }
 }

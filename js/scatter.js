@@ -88,6 +88,8 @@ class Scatterplot {
 
         
           //Legend
+          
+          vis.chart.append ("text").attr("x", -100).attr("y", 80).text("Legend:").style("font-size", "15px").attr("alignment-baseline","middle"). attr ("fill", "white");
           vis.chart.append("circle").attr("cx",-80).attr("cy",95).attr("r", 5).style("fill", '#c435ff');
           vis.chart.append("circle").attr("cx",10).attr("cy",95).attr("r", 5).style("fill", '#158844');
           vis.chart.append("circle").attr("cx",100).attr("cy",95).attr("r", 5).style("fill", '#1d939b');
@@ -104,13 +106,16 @@ class Scatterplot {
           vis.chart.append("text").attr("x", 15).attr("y", 120).text("Neptunian").style("font-size", "15px").attr("alignment-baseline","middle"). attr ("fill", "white");
           vis.chart.append("text").attr("x", 105).attr("y", 120).text("Jovian").style("font-size", "15px").attr("alignment-baseline","middle"). attr ("fill", "white");
           vis.chart.append("text").attr("x", 195).attr("y", 120).text("Missing/Other").style("font-size", "15px").attr("alignment-baseline","middle"). attr ("fill", "white");
+          
     }
+  
   
     /**
      * Prepare the data and scales before we render it.
      */
     updateVis() {
       let vis = this;
+
       
       // Specificy accessor functions
       vis.xValue = d => d.st_rad;
@@ -119,8 +124,11 @@ class Scatterplot {
       // Set the scale input domains
       //Using d3.max I couldn't get above 9.99 and things got cut off
       //so I've hard coded it
-      vis.yScale.domain([0, 10.94]); //try to get this to work with d3.max so I can use filtering
-      vis.xScale.domain([0, 109.46]);
+      //vis.yScale.domain([0, 10.94]); //try to get this to work with d3.max so I can use filtering
+      //vis.xScale.domain([0, 109.46]);
+
+      vis.xScale.domain([0, d3.max(vis.data, vis.xValue)]);
+      vis.yScale.domain([0, d3.max(vis.data, vis.yValue)]);
 
   
       vis.renderVis();

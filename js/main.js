@@ -17,6 +17,11 @@ d3.csv('data/exoplanets-1.csv')
 		}
 	});
 
+	data.forEach(function(d) {
+		d.st_rad = parseFloat(d.st_rad);
+		d.st_mass = parseFloat(d.st_mass);
+	});
+
 	//calculations for habitability
 	data.forEach(d => {
 		if (d.type == 'A'){
@@ -171,32 +176,10 @@ d3.csv('data/exoplanets-1.csv')
 	scatterplot = new Scatterplot({ 
 		'parentElement': '#radVMass',
 		'containerHeight': 200,
-		'containerWidth': 400,
+		'containerWidth': 450,
 	  }, data);
 	  scatterplot.updateVis();
 
-	d3.selectAll('.legend-btn').on('click', function() {
-		// Toggle 'inactive' class
-		d3.select(this).classed('inactive', !d3.select(this).classed('inactive'));
-	  
-		// Filter data accordingly and update vis
-		let button = document.getElementById('unknown');
-		if (button.classList.contains('inactive')){
-			starType.data = starType.data.filter(d => d.type != "Unknown");
-			habitability.data = habitability.data.filter(d => d.type != "Unknown");
-			scatterplot.data = scatterplot.data.filter(d => d.st_rad != "");
-			starType.updateVis();
-			habitability.updateVis();
-			scatterplot.updateVis();
-		} else {
-			starType.data = data;
-			habitability.data = data;
-			scatterplot.data = data;
-			starType.updateVis();
-			habitability.updateVis();
-			scatterplot.updateVis();
-		}
-	  });
 
 
 
@@ -212,7 +195,7 @@ d3.csv('data/exoplanets-1.csv')
 		'colorScale' : disScale,
 		'containerHeight': 200,
 		'containerWidth': 400,
-	}, data, 'Distance from Earth in Parsecs', 'bin', 'Distance'); 
+	}, data, 'Distance from Earth in Parsecs', 'bin', 'Distance', true); 
 	distance.updateVis();
 	
 
@@ -242,7 +225,7 @@ d3.csv('data/exoplanets-1.csv')
 		'parentElement': '#discoveryType',
 		'colorScale' : discScale,
 		'containerHeight': 200,
-		'containerWidth': 1000,
+		'containerWidth': 800,
 	}, data, 'Discovery Type', 'discoverymethod', 'Discovery Method', true); 
 	discoveryType.updateVis();
 
@@ -254,6 +237,30 @@ d3.csv('data/exoplanets-1.csv')
 		'containerWidth': 1420,
 	}, data, 'Planet Data Table');
 	table.initVis();
+
+	d3.selectAll('.legend-btn').on('click', function() {
+		// Toggle 'inactive' class
+		d3.select(this).classed('inactive', !d3.select(this).classed('inactive'));
+	  
+		// Filter data accordingly and update vis
+		let button = document.getElementById('unknown');
+		if (button.classList.contains('inactive')){
+			starType.data = starType.data.filter(d => d.type != "Unknown");
+			habitability.data = habitability.data.filter(d => d.type != "Unknown");
+			scatterplot.data = scatterplot.data.filter(d => d.st_rad != "");
+			starType.updateVis();
+			habitability.updateVis();
+			scatterplot.updateVis();
+		} else {
+			starType.data = data;
+			habitability.data = data;
+			scatterplot.data = data;
+			starType.updateVis();
+			habitability.updateVis();
+			scatterplot.updateVis();
+		}
+	  });
+
 
 
 });
@@ -281,7 +288,6 @@ function filterData() {
 			usedForFilter.push (info[0])
 		}
 	});
-	//fix filtering, currently removed highlighted bar
 	filter.forEach( f => {
 		let info = f.split(",");
 		if (!usedForFilter.includes("sy_snum")){
@@ -300,7 +306,6 @@ function filterData() {
 			distance.data =distance.data.filter(d => d[info[0]] == info[1]);
 		}
 		if (!usedForFilter.includes("discoverymethod")){
-			//TODO: Fix this
 			discoveryType.data = discoveryType.data.filter(d => d[info[0]] == info[1]);
 		}
 		scatterplot.data = scatterplot.data.filter(d => d[info[0]] == info[1]);

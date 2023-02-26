@@ -67,6 +67,39 @@ li {
     background: #444444;
     color:rgb(255, 255, 255);
   }
+
+  .legend-btn[category="Asterodian"] .legend-symbol {
+    background: #c435ff;
+    color:rgb(255, 255, 255);
+  }
+  .legend-btn[category="Mercurian"] .legend-symbol {
+    background: #158844;
+    color:rgb(255, 255, 255);
+  }
+  .legend-btn[category="Subterran"] .legend-symbol {
+    background: #1d939b;
+    color:rgb(255, 255, 255);
+  }
+  .legend-btn[category="Terran"] .legend-symbol {
+    background: #c4ffd9;
+    color:rgb(255, 255, 255);
+  }
+  .legend-btn[category="Superterran"] .legend-symbol {
+    background: #2fdbd1;
+    color:rgb(255, 255, 255);
+  }
+  .legend-btn[category="Neptunian"] .legend-symbol {
+    background: #eed0ff;
+    color:rgb(255, 255, 255);
+  }
+  .legend-btn[category="Jovian"] .legend-symbol {
+    background: #00efff;
+    color:rgb(255, 255, 255);
+  }
+  .legend-btn[category="UnknownS"] .legend-symbol {
+    background: #444444;
+    color:rgb(255, 255, 255);
+  }
   .bar:hover {
     stroke: #aeaeae;
   }

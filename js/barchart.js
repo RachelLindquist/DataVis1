@@ -149,7 +149,7 @@ class BarChart{
           const isActive = filter.includes(fil);
           if (isActive) {
             filter = filter.filter(f => f !== fil); // Remove from filter
-            d3.select(event.currentTarget).style("stroke", "#000000");
+            d3.select(event.currentTarget).style("stroke", "none");
           } else {
             filter.push(fil); // Add to filter
             d3.select(event.currentTarget).style("stroke", "#ffffff");

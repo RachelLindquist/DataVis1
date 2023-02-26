@@ -83,8 +83,7 @@ class Line {
         .y(d => vis.yScale(vis.yValue(d)));
 
     // Set the scale input domains
-    vis.xScale.domain(d3.extent(vis.data, vis.xValue));
-    vis.yScale.domain(d3.extent(vis.data, vis.yValue));
+    
 
   }
 
@@ -92,6 +91,8 @@ class Line {
 
  updateVis() { 
   let vis = this; 
+  vis.xScale.domain(d3.extent(vis.data, vis.xValue));
+  vis.yScale.domain(d3.extent(vis.data, vis.yValue));
   vis.svg.selectAll("g").remove()
   vis.chart = vis.svg.append('g')
   .attr('transform', `translate(${vis.config.margin.left}, ${vis.config.margin.top})`);

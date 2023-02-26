@@ -45,13 +45,14 @@ class Table{
 
     updateVis(){
       let vis = this;
+      vis.valueFunc = d => d.value;
+      vis.textFunc = data => data.fullname;
+      vis.columns = ['pl_name', 'discovery_method', 'disc_facility'];
 
       vis.renderVis();
     }
 
     renderVis(){
-      let vis = this;
-
       // https://forrestcoward.github.io/examples/scrollable-table/index.html
       // tried using thsi ^ couldnt get it to work
     }

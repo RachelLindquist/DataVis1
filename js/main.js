@@ -167,7 +167,7 @@ d3.csv('data/exoplanets-1.csv')
 		'colorScale' : habScale,
 		'containerHeight': 200,
 		'containerWidth': 400,
-	}, data, 'Number of Habitabitable Exoplanets', 'habit', 'Habitable?'); 
+	}, data, 'Number of Habitable Exoplanets', 'habit', 'Habitable?'); 
 	habitability.updateVis();
 
 	//radius vs mass
@@ -205,7 +205,7 @@ d3.csv('data/exoplanets-1.csv')
 		'parentElement': '#disTime',
 		'containerHeight': 200,
 		'containerWidth': 400,
-	}, disc, 'Discoveries each year');
+	}, disc, 'Discoveries Each Year');
 	discTime.updateVis();
 
 

@@ -2,10 +2,19 @@ body {
   background-color: rgb(0, 0, 0);
 }
 h1{
-  color: rgb(255, 255, 255);
+  color: rgb(30, 105, 114);
 }
 h2{
-  color: rgb(255, 255, 255);
+  color: rgb(31, 128, 145);
+}
+h3{
+  color: rgb(44, 151, 159);
+}
+h4{
+  color: rgb(45, 163, 160);
+}
+h5{
+  color: rgb(61, 172, 152);
 }
 p{
   color: rgb(255, 255, 255);
